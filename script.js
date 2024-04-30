@@ -11,10 +11,10 @@ const inventors = [
     { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
     { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
-  ];
-  
+];
 
-  const people = [
+
+const people = [
     'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
     'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul',
     'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David',
@@ -26,32 +26,32 @@ const inventors = [
     'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank',
     'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony',
     'Blake, William'
-  ];
-  
-  const travelMethods = [
+];
+
+const travelMethods = [
     'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
     'bike', 'walk', 'car', 'van', 'car', 'truck'
-  ];
-  
+];
 
-  const devs = [
+
+const devs = [
     { name: 'Alex', year: 1988 },
     { name: 'Dani', year: 1986 },
     { name: 'Matt', year: 1970 },
     { name: 'Wes', year: 2015 }
-  ];
-  
+];
 
-  const comments = [
+
+const comments = [
     { text: 'Love this!', id: 523423 },
     { text: 'Super good', id: 823423 },
     { text: 'You are the best', id: 2039842 },
     { text: 'Ramen is my fav food ever', id: 123523 },
     { text: 'Nice Nice Nice!', id: 542328 }
-  ];
-  
+];
 
-  // Array.prototype.filter()
+
+// Array.prototype.filter()
 
 // 1. Filter the array of inventors into a new array containing only the inventors born in the 1500's.
 
@@ -157,7 +157,7 @@ const sortedByBirthYear = inventors.sort((inventor1, inventor2) => {
 
 // Enter you solution code here:
 const inventorNamedAda = inventors.find((inventor) => {
-return inventor.first === 'Ada'
+    return inventor.first === 'Ada'
 })
 
 
@@ -242,7 +242,7 @@ const firstLast = people.map((names) => {
 
 // Enter your solution code here:
 const isAdultPresent = devs.some((person) => {
-return (2024 - person.year) >= 18
+    return (2024 - person.year) >= 18
 })
 
 
@@ -317,7 +317,7 @@ const commentById = comments.find((comment) => {
 // Enter your solution code here:
 
 const idx = comments.findIndex((comment) => {
-return comment.id === 123523
+    return comment.id === 123523
 })
 
 // Check your return value:
@@ -342,8 +342,58 @@ let totalYearsLived = 0
 
 // Enter your solution code here:
 
+totalYearsLived = inventors.reduce((accumulator, currentValue) => {
+    return accumulator + (currentValue.passed - currentValue.year)
+}, 0)
 
 
 // Check your return value:
-console.log('Bonus 1 My Result: ', totalYearsLived)
-console.log('Bonus 1 Correct Result: ', 861)
+// console.log('Bonus 1 My Result: ', totalYearsLived)
+// console.log('Bonus 1 Correct Result: ', 861)
+
+// ! Array.prototype.reduce()
+
+// Bonus 2. Tallying Travel Methods Using Array.prototype.reduce(). Count the number of times each travel method appears in the 'travelMethods' array.
+
+// - The resulting object should have keys as the travel methods ('car', 'truck', 'bike', etc.) and values as their respective counts.
+// - Store this object in the variable 'travelMethodCounts'.
+
+// Hints:
+// - Inside the reduce function, check if the travel method already exists as a key in your accumulator object. If it does, increment its count. If not, add it with a count of 1.
+// - Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
+
+
+
+let travelMethodCounts = {}
+
+// Enter your solution code here:
+// travelMethodCounts = travelMethods.reduce((accumulator, travelUsed) => {
+//     travelUsed.sort((method1, method2) => {
+// if (method1 === method2) {
+//     return accumulator + 1
+// }
+//     })
+
+// }, 1)
+
+travelMethodCounts = travelMethods.reduce((accumulator, travelUsed) => {
+
+    // if (accumulator[travelUsed]) {
+    //  accumulator[travelUsed] ++
+    // } else {
+    //     accumulator[travelUsed] = 1
+    // } 
+accumulator[travelUsed] = accumulator[travelUsed] ? accumulator[travelUsed] + 1 : 1
+
+    return accumulator
+}, {})
+
+// Check your return value:
+console.log('Bonus 2 My Result: ', travelMethodCounts)
+console.log('Bonus 2 Correct Result: ', { car: 5, truck: 3, bike: 2, walk: 2, van: 2 })
+
+
+// const travelMethods = [
+//     'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
+//     'bike', 'walk', 'car', 'van', 'car', 'truck'
+//   ];
